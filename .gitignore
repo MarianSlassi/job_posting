@@ -1,0 +1,26 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Local variables
+.uvenv
+.vscode/
+
+# File types
+*.pyc
+*.csv
+*.xlsx
+*.json
+*.pypirc
+*.log
+*.parquet
+*.pkl
+
+#Project related Folders
+/data
+/models
+/mlruns

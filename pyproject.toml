@@ -1,0 +1,7 @@
+[project]
+name = "job-posting"
+version = "0.1.0"
+description = "NLP classifier and NER"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
