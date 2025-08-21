@@ -7,7 +7,7 @@ wheels/
 *.egg-info
 
 # Local variables
-.uvenv
+.venv
 .vscode/
 
 # File types
