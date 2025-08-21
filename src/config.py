@@ -102,7 +102,8 @@ class Config:
             'mapping_industries':       kaggle_download / 'mappings/industries.csv',
             'skills_id':                kaggle_download / 'jobs/job_skills.csv',
             'mapping_skills':           kaggle_download / 'mappings/skills.csv',
-            'companies':                kaggle_download /  'companies/companies.csv'
+            'companies':                kaggle_download /  'companies/companies.csv',
+            'company_industries':       kaggle_download /  'companies/company_industries.csv'
         }
         self._model={
 
