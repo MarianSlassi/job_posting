@@ -24,3 +24,6 @@ wheels/
 /data
 /models
 /mlruns
+
+# Locked
+*.env

@@ -86,10 +86,10 @@ class Config:
 
             # Interim _03
             'interim_dir':              interim_dir,
-            'sales_for_eda':            interim_dir / 'sales_for_eda.parquet', # DQC Notebook output with merged dicts
-            'interim_parquet':          interim_dir / 'data_checkpoint_full_df_feature_engineering.parquet', # Feature engineering debugging
-            'full_df_test_csv':         interim_dir / 'full_df_test_csv.csv', # Test for features validation schema
-            'cleaned_test_schema_csv':  interim_dir / 'cleaned_test_schema.csv', # Test for cleaned validation schema
+            'cleaned_data':             interim_dir / 'cleaned_data.parquet', 
+            'interim_parquet':          interim_dir / 'data_checkpoint_full_df_feature_engineering.parquet', 
+            'interim_csv':              interim_dir / 'interim.csv', 
+            'cleaned_test_schema_csv':  interim_dir / 'cleaned_test_schema.csv', 
             
             # Cleaned _02
             'cleaned_dir':              cleaned_dir,
@@ -97,7 +97,7 @@ class Config:
 
             # Raw _01
             'raw_dir':                  raw_dir,
-            'postings':                  kaggle_download / 'postings.csv',
+            'postings':                 kaggle_download / 'postings.csv',
             'industries_id':            kaggle_download / 'jobs/job_industries.csv',
             'mapping_industries':       kaggle_download / 'mappings/industries.csv',
             'skills_id':                kaggle_download / 'jobs/job_skills.csv',
