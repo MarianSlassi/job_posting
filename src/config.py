@@ -86,17 +86,16 @@ class Config:
 
             # Interim _03
             'interim_dir':              interim_dir,
-            'cleaned_data':             interim_dir / 'cleaned_data.parquet', 
             'interim_parquet':          interim_dir / 'data_checkpoint_full_df_feature_engineering.parquet', 
             'interim_csv':              interim_dir / 'interim.csv', 
             'cleaned_test_schema_csv':  interim_dir / 'cleaned_test_schema.csv', 
             
             # Cleaned _02
             'cleaned_dir':              cleaned_dir,
-            'cleaned_parquet':          cleaned_dir / 'sales_cleaned.parquet',
+            'cleaned_parquet':          cleaned_dir / 'cleaned_data.parquet', # stores data after etl extraction with 25 top categories and nice description text
 
             # Raw _01
-            'raw_dir':                  raw_dir,
+            'raw_dir':                  raw_dir, # 🦎
             'postings':                 kaggle_download / 'postings.csv',
             'industries_id':            kaggle_download / 'jobs/job_industries.csv',
             'mapping_industries':       kaggle_download / 'mappings/industries.csv',

@@ -156,7 +156,7 @@ top_categories = df['category'].value_counts().head(25).index
 df = df[df['category'].isin(top_categories)].copy()
 
 print('Starting saving data')
-df.to_parquet(config.get('cleaned_data'))
+df.to_parquet(config.get('cleaned_parquet'))
 print('Data Saved')
 # After that we usually save it's dataframe. 
 # We should note it contains phone numbers and emails. While we do use TF-IDF which preprocess it for LogReg.
