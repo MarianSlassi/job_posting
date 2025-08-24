@@ -21,6 +21,9 @@ class Config:
             logs_dir=Path("/tmp/logs")
         )
         config.get('')
+
+
+        All commented lines means some config path aren't used in project currently, but might be used in the future. All uncommented paths are used.
         '''
 
         def override_or_default(key: str, default: Path):
@@ -52,57 +55,52 @@ class Config:
         '''
         self._config = {
             # Logs _07
-            'logs_dir':                 logs_dir,
-            'log_file_etl':             logs_dir / 'etl_pipeline.log',
-            'log_file_build_features':  logs_dir / 'build_features.log',
-            'log_file_split':           logs_dir / 'split.log',
-            'log_file_model':           logs_dir / 'model.log',
+            # 'logs_dir':                 logs_dir,
+            # 'log_file_etl':             logs_dir / 'etl_pipeline.log',
+            # 'log_file_build_features':  logs_dir / 'build_features.log',
+            # 'log_file_split':           logs_dir / 'split.log',
+            # 'log_file_model':           logs_dir / 'model.log',
 
             # Expirements logging
-            'log_ml_flow':              logs_dir / 'ml_flow.log',
+            # 'log_ml_flow':              logs_dir / 'ml_flow.log',
 
             # Models
             'models_dir':               models_dir,
-            'xgb_model':                models_dir / 'xgb_model.pkl',
+            # 'xgb_model':                models_dir / 'xgb_model.pkl',
 
             # Validation Schems _07
-            'validation_schema_cleaned':   logs_dir / 'validation_schema_cleaned.log',
-            'validation_schema_features':   logs_dir / 'validation_schema_features.log',
+            # 'validation_schema_cleaned':   logs_dir / 'validation_schema_cleaned.log',
+            # 'validation_schema_features':   logs_dir / 'validation_schema_features.log',
 
             # Predict _06
-            'predict_dir':              predict_dir,
-            'predict_base':             predict_dir / 'base_predicted.csv', # basic predictions
-            'predict':                  predict_dir / 'predicted.csv',
+            # 'predict_dir':              predict_dir,
+            # 'predict_base':             predict_dir / 'base_predicted.csv', # basic predictions
+            # 'predict':                  predict_dir / 'predicted.csv',
 
             # Processed _05
-            'processed_dir':            processed_dir,
-            'train_x':                  processed_dir / 'train_x.parquet',
-            'train_y':                  processed_dir / 'train_y.parquet',
-            'inference':                processed_dir / 'inference.parquet',
+            # 'processed_dir':            processed_dir,
+            # 'train_x':                  processed_dir / 'train_x.parquet',
+            # 'train_y':                  processed_dir / 'train_y.parquet',
+            # 'inference':                processed_dir / 'inference.parquet',
 
             # Features _04
-            'features_dir':             features_dir,
-            'features':                 features_dir / 'full_features.parquet',
+            # 'features_dir':             features_dir,
+            # 'features':                 features_dir / 'full_features.parquet',
 
             # Interim _03
-            'interim_dir':              interim_dir,
-            'interim_parquet':          interim_dir / 'data_checkpoint_full_df_feature_engineering.parquet', 
-            'interim_csv':              interim_dir / 'interim.csv', 
-            'cleaned_test_schema_csv':  interim_dir / 'cleaned_test_schema.csv', 
+            # 'interim_dir':              interim_dir,
+            # 'interim_parquet':          interim_dir / 'data_checkpoint_full_df_feature_engineering.parquet', 
+            # 'interim_csv':              interim_dir / 'interim.csv', 
+            # 'cleaned_test_schema_csv':  interim_dir / 'cleaned_test_schema.csv', 
             
             # Cleaned _02
-            'cleaned_dir':              cleaned_dir,
-            'cleaned_parquet':          cleaned_dir / 'cleaned_data.parquet', # stores data after etl extraction with 25 top categories and nice description text
+            'cleaned_dir':                  cleaned_dir,
+            'cleaned_parquet':              cleaned_dir / 'cleaned_data.parquet', # stores data after etl extraction with 25 top categories and nice description text
+            'cleaned_for_bert_training':    cleaned_dir / 'bert_train_data.parquet',
 
             # Raw _01
-            'raw_dir':                  raw_dir, # 🦎
-            'postings':                 kaggle_download / 'postings.csv',
-            'industries_id':            kaggle_download / 'jobs/job_industries.csv',
-            'mapping_industries':       kaggle_download / 'mappings/industries.csv',
-            'skills_id':                kaggle_download / 'jobs/job_skills.csv',
-            'mapping_skills':           kaggle_download / 'mappings/skills.csv',
-            'companies':                kaggle_download /  'companies/companies.csv',
-            'company_industries':       kaggle_download /  'companies/company_industries.csv'
+            'raw_dir':                          raw_dir
+
         }
         self._model={
 

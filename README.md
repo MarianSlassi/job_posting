@@ -2,6 +2,9 @@
 `bert.ipynb` - model training and all transformations documented in appropriate format
 
 For baseline used LogReg from scikit-learn. Default parameters.
+
+Dataset Rows: ~633k
+
 Base score:
     Accuracy: 0.6348
     Macro F1: 0.5961
