@@ -184,7 +184,7 @@ class ClassifierModel:
         return metrics
 
     @torch.inference_mode()
-    def predict(self, data: Union[str, List[str]], return_probas: bool = True, batch_size: int = 32):
+    def predict(self, data: Union[str, List[str]], return_probas: bool = True, batch_size: int = 32) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
         single = isinstance(data, str)
         texts = [data] if single else list(data)
         results: List[Dict[str, Any]] = []

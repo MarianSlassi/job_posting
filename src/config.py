@@ -54,44 +54,11 @@ class Config:
         Now no need to redefine kaggle_download variable when initing config bc it's stored at raw dir. 
         '''
         self._config = {
-            # Logs _07
-            # 'logs_dir':                 logs_dir,
-            # 'log_file_etl':             logs_dir / 'etl_pipeline.log',
-            # 'log_file_build_features':  logs_dir / 'build_features.log',
-            # 'log_file_split':           logs_dir / 'split.log',
-            # 'log_file_model':           logs_dir / 'model.log',
-
-            # Expirements logging
-            # 'log_ml_flow':              logs_dir / 'ml_flow.log',
 
             # Models
-            'models_dir':               models_dir,
-            # 'xgb_model':                models_dir / 'xgb_model.pkl',
-
-            # Validation Schems _07
-            # 'validation_schema_cleaned':   logs_dir / 'validation_schema_cleaned.log',
-            # 'validation_schema_features':   logs_dir / 'validation_schema_features.log',
-
-            # Predict _06
-            # 'predict_dir':              predict_dir,
-            # 'predict_base':             predict_dir / 'base_predicted.csv', # basic predictions
-            # 'predict':                  predict_dir / 'predicted.csv',
-
-            # Processed _05
-            # 'processed_dir':            processed_dir,
-            # 'train_x':                  processed_dir / 'train_x.parquet',
-            # 'train_y':                  processed_dir / 'train_y.parquet',
-            # 'inference':                processed_dir / 'inference.parquet',
-
-            # Features _04
-            # 'features_dir':             features_dir,
-            # 'features':                 features_dir / 'full_features.parquet',
-
-            # Interim _03
-            # 'interim_dir':              interim_dir,
-            # 'interim_parquet':          interim_dir / 'data_checkpoint_full_df_feature_engineering.parquet', 
-            # 'interim_csv':              interim_dir / 'interim.csv', 
-            # 'cleaned_test_schema_csv':  interim_dir / 'cleaned_test_schema.csv', 
+            'models_dir':                  models_dir,
+            'label2id':                   models_dir / 'label2id.json',
+            'id2label':                   models_dir / 'id2label.json',
             
             # Cleaned _02
             'cleaned_dir':                  cleaned_dir,
@@ -118,12 +85,18 @@ class Config:
             if 'dir' in key:
                 raise KeyError(f'You can set base directories only when creating config object')
             self._config[key] = Path(value)
+    
 
     def as_dict(self) -> dict[str, Path]:
           return self._config.copy()
 
     def keys(self) -> list[str]:
           return list(self._config.keys())
+
+    def __setitem__(self, key: str, value: Path | str) -> None:
+        if 'dir' in key:
+            raise KeyError(f'You can set base directories only when creating config object')
+        self._config[key] = Path(value)
 
     def __getitem__(self, key: str) -> Path:
         return self.get(key)                                             # To have possibility call keys through dict syntax e.g. config['key']

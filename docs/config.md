@@ -18,7 +18,7 @@ cfg = Config(
     base_dir=Path("my_project_data"),
     logs_dir=Path("/tmp/my_logs"),
     raw_dir=Path("/mnt/raw_datasets"),
-    models_dir=Path("/tmp/metrics")  # это будет в extra
+    models_dir=Path("/tmp/metrics") 
 )
 
 ```

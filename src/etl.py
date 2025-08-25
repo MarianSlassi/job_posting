@@ -128,8 +128,6 @@ class ETL:
         valid_categories = counts[counts >= 0.01 * max_count].index
         df = df[df["category"].isin(valid_categories)].copy()
 
-        # Normalise Categories names
-
         # Delete trailing spaces for categories
         df['category'] = df['category'].apply(self._clean_text)
 
@@ -181,8 +179,8 @@ class ETL:
         id2label = {i:lbl for lbl,i in label2id.items()}
         df["category"] = df["category"].map(label2id).astype(int)
 
-        with open("label2id.json", "w") as f: json.dump(label2id, f)
-        with open("id2label.json", "w") as f: json.dump(id2label, f)
+        with open(self.config['label2id'], "w") as f: json.dump(label2id, f)
+        with open(self.config['id2label'], "w") as f: json.dump(id2label, f)
 
         df = df.rename(columns={'job_posting':'text', 'category': 'labels'})
 

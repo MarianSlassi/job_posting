@@ -1,7 +1,7 @@
 `eda.ipynb` - basic data checks and pipleine drafts
 `bert.ipynb` - model training and all transformations documented in appropriate format
 
-For baseline used LogReg from scikit-learn. Default parameters.
+For baseline used LogReg+TF-IDF from scikit-learn. Default parameters.
 
 Dataset Rows: ~633k
 
