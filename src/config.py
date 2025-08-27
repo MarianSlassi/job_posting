@@ -37,7 +37,7 @@ class Config:
         predict_dir   = override_or_default('predict_dir', self.base_dir / '06_predictions')
         processed_dir = override_or_default('processed_dir', self.base_dir / '05_processed')
         features_dir  = override_or_default('features_dir', self.base_dir / '04_features')
-        interim_dir   = override_or_default('interim_dir', self.base_dir / '03_interim')
+        validated_dir   = override_or_default('validated_dir', self.base_dir / '03_validated')
         cleaned_dir   = override_or_default('cleaned_dir', self.base_dir / '02_cleaned')
         raw_dir       = override_or_default('raw_dir', self.base_dir / '01_raw')
         models_dir    = override_or_default('models_dir', self.models_dir)
@@ -59,14 +59,22 @@ class Config:
             'models_dir':                  models_dir,
             'label2id':                   models_dir / 'label2id.json',
             'id2label':                   models_dir / 'id2label.json',
+
+            # Validated_3
+            'validated_dir':                validated_dir,
+            'train_connl':                      validated_dir / 'train.conll',
+            'validation_connl':                 validated_dir / 'validation.conll',
+            'test_connl':                       validated_dir / 'test.conll',
             
-            # Cleaned _02
+            # Cleaned_02
             'cleaned_dir':                  cleaned_dir,
             'cleaned_parquet':              cleaned_dir / 'cleaned_data.parquet', # stores data after etl extraction with 25 top categories and nice description text
             'cleaned_for_bert_training':    cleaned_dir / 'bert_train_data.parquet',
 
             # Raw _01
-            'raw_dir':                          raw_dir
+            'raw_dir':                          raw_dir,
+            
+
 
         }
         self._model={
