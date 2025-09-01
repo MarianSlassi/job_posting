@@ -1,8 +1,11 @@
 # app.py
 from typing import List, Optional, Literal, Any
 from fastapi import FastAPI, HTTPException
+from contextlib import asynccontextmanager
 from pydantic import BaseModel, Field, validator
 import logging
+from src.core.classifiers.classification_model import ClassifierModel
+from src.core.ner import SkillExtractor
 
 # -----------------------------------------------------------------------------
 # Logging setup
@@ -201,15 +204,33 @@ class SkillExtractorService:
             outputs.append(spans)
         return outputs
 
+# -----------------------------------------------------------------------------
+# Lifespan
+# -----------------------------------------------------------------------------
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    model_name = "distilbert-base-uncased-finetuned-sst-2-english"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
+
+    # сохраняем в app.state
+    app.state.tokenizer = tokenizer
+    app.state.model = model
+
+    yield  # здесь запускается приложение и работают эндпоинты
+
+    # Код при завершении (например, закрыть соединение с БД)
+    print("Shutting down...")
 
 # -----------------------------------------------------------------------------
 # Application factory
 # -----------------------------------------------------------------------------
-def create_app() -> FastAPI:
+def create_app(lifespan) -> FastAPI:
     app = FastAPI(
         title="TalentStream NLP API",
         version="0.1.0",
-        description="FastAPI service for job classification and skill extraction."
+        description="FastAPI service for job classification and skill extraction.",
+        lifespan = lifespan
     )
 
     # Services as "singletons" loaded once
@@ -268,4 +289,4 @@ app = create_app()
 # If you prefer "python app.py" to run a local dev server:
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("src.app:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("src.main:app", host="127.0.0.1", port=8000, reload=True)

@@ -1,0 +1,1 @@
+from .skills_model import ClassifierModel

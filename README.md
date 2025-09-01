@@ -58,7 +58,7 @@ Dataset Rows ~ 4k
 Result: BERT-MLP shows high score compare to features-CRF. But entity boundaries are frequently misaligned, with spans predicted partially or with extra tokens.
 There are occasional false positives on generic words like skills or experience.
 Short single-word skills (“Consulting”, “communication”) are predicted worse than multi-word terms.
-## 🦎Notes for development (enternal doc):
+## 🦎 Notes for development (enternal doc):
 NER datasets sources:
 1. https://huggingface.co/datasets?sort=trending&search=skillspan
 2. https://huggingface.co/datasets?sort=trending&search=job+skill
