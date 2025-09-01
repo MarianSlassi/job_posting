@@ -1,2 +1,2 @@
 from .config import Config
-from .model import ClassifierModel
+from .classification_model import ClassifierModel
