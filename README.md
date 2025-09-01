@@ -58,7 +58,7 @@ Dataset Rows ~ 4k
 Result: BERT-MLP shows high score compare to features-CRF. But entity boundaries are frequently misaligned, with spans predicted partially or with extra tokens.
 There are occasional false positives on generic words like skills or experience.
 Short single-word skills (“Consulting”, “communication”) are predicted worse than multi-word terms.
-### Notes for development (enternal doc):
+## 🦎Notes for development (enternal doc):
 NER datasets sources:
 1. https://huggingface.co/datasets?sort=trending&search=skillspan
 2. https://huggingface.co/datasets?sort=trending&search=job+skill
@@ -66,41 +66,49 @@ NER datasets sources:
 
 
 
-### Lock
+### Uvicorn
 
-console if \__main__ initialised : uv run python -m src.main_test
-if __name__ == '__main__':
-    uvicorn.run("src.main_test:app", host="127.0.0.1", port=8000, reload=True)
+    console if \__main__ initialised : uv run python -m src.main_test
+    if __name__ == '__main__':
+        uvicorn.run("src.main_test:app", host="127.0.0.1", port=8000, reload=True)
 
-if just no code you can run with 
- uv run uvicorn src.main_test:app --reload
+    if just no code you can run with 
+    uv run uvicorn src.main_test:app --reload
 
+###  How to use Description classification model: 
+    from src.model import ClassifierModel 
+    finetuned_dir = "../models/checkpoint-33000"
 
+    clf = ClassifierModel(finetuned_dir, finetuned=True, max_length=256)
+
+    text = "Senior Python developer needed in Amsterdam, experience with NLP required."
+    pred = clf.predict(text, return_probas=True)
+    print(pred)
 
 ### How to use skills_model
-from pathlib import Path
-from skill_extractor import SkillExtractor  
+    from pathlib import Path
+    from skill_extractor import SkillExtractor  
 
-train_path = Path("data/skill_conll/train.conll")
-val_path   = Path("data/skill_conll/validation.conll")
-test_path  = Path("data/skill_conll/test.conll")
-se = SkillExtractor(model_name="bert-base-cased", max_length=256)
-se.prepare_from_conll(train_path, val_path, test_path)
+    train_path = Path("data/skill_conll/train.conll")
+    val_path   = Path("data/skill_conll/validation.conll")
+    test_path  = Path("data/skill_conll/test.conll")
+    se = SkillExtractor(model_name="bert-base-cased", max_length=256)
+    se.prepare_from_conll(train_path, val_path, test_path)
 
-out_dir = Path("models/bert-skill-ner")
-se.fit(output_dir=out_dir, early_stopping_patience=3)
-se.evaluate("validation")
-se.evaluate("test")
+    out_dir = Path("models/bert-skill-ner")
+    se.fit(output_dir=out_dir, early_stopping_patience=3)
+    se.evaluate("validation")
+    se.evaluate("test")
 
-save_dir = out_dir / "final"
-se.save(save_dir)
+    save_dir = out_dir / "final"
+    se.save(save_dir)
 
-se2 = SkillExtractor.load(save_dir)
+    se2 = SkillExtractor.load(save_dir)
 
-text = "Senior Python Developer with FastAPI, Docker and a bit of Kubernetes; strong SQL."
-skills = se2.predict(text)               
-print(skills)
+    text = "Senior Python Developer with FastAPI, Docker and a bit of Kubernetes; strong SQL."
+    skills = se2.predict(text)               
+    print(skills)
 
-skills_all = se2.predict(text, unique=False)
-print(skills_all)
+    skills_all = se2.predict(text, unique=False)
+    print(skills_all)
 
