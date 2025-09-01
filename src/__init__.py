@@ -1,2 +1,3 @@
 from .config import Config
-from .classification_model import ClassifierModel
+from .model import ClassifierModel
+from .skills_model import SkillExtractor

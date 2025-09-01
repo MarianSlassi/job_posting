@@ -64,3 +64,43 @@ NER datasets sources:
 2. https://huggingface.co/datasets?sort=trending&search=job+skill
 3. https://github.com/kris927b/SkillSpan?tab=readme-ov-file or https://aclanthology.org/2022.naacl-main.366/
 
+
+
+### Lock
+
+console if \__main__ initialised : uv run python -m src.main_test
+if __name__ == '__main__':
+    uvicorn.run("src.main_test:app", host="127.0.0.1", port=8000, reload=True)
+
+if just no code you can run with 
+ uv run uvicorn src.main_test:app --reload
+
+
+
+### How to use skills_model
+from pathlib import Path
+from skill_extractor import SkillExtractor  
+
+train_path = Path("data/skill_conll/train.conll")
+val_path   = Path("data/skill_conll/validation.conll")
+test_path  = Path("data/skill_conll/test.conll")
+se = SkillExtractor(model_name="bert-base-cased", max_length=256)
+se.prepare_from_conll(train_path, val_path, test_path)
+
+out_dir = Path("models/bert-skill-ner")
+se.fit(output_dir=out_dir, early_stopping_patience=3)
+se.evaluate("validation")
+se.evaluate("test")
+
+save_dir = out_dir / "final"
+se.save(save_dir)
+
+se2 = SkillExtractor.load(save_dir)
+
+text = "Senior Python Developer with FastAPI, Docker and a bit of Kubernetes; strong SQL."
+skills = se2.predict(text)               
+print(skills)
+
+skills_all = se2.predict(text, unique=False)
+print(skills_all)
+

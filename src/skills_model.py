@@ -166,7 +166,7 @@ class SkillExtractor:
 
         args = TrainingArguments(
             output_dir=str(output_dir),
-            evaluation_strategy="steps",
+            eval_strategy="steps",
             eval_steps=500,
             save_steps=500,
             save_total_limit=2,
