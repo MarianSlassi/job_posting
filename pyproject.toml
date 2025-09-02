@@ -25,6 +25,7 @@
         "torchaudio>=2.8.0",
         "torchvision>=0.23.0",
         "transformers>=4.55.3",
+        "uv>=0.8.14",
         "uvicorn>=0.35.0",
 ]
 
@@ -33,13 +34,3 @@
         "matplotlib>=3.10.5",
         "seaborn>=0.13.2",
     ]
-
-    [tool.uv.sources]
-    torch = { index = "pytorch-cu126" }
-    torchvision = { index = "pytorch-cu126" }
-    torchaudio = { index = "pytorch-cu126" }
-    
-    [[tool.uv.index]]
-    name = "pytorch-cu126"
-    url = "https://download.pytorch.org/whl/cu126"
-    explicit = true
