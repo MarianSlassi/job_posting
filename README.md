@@ -112,3 +112,11 @@ NER datasets sources:
     skills_all = se2.predict(text, unique=False)
     print(skills_all)
 
+
+## API testing
+### post: /extract_skills
+    {"text": "You will work as part of our Agile hybrid DevOps teams to help develop/configure new tools roll out environments and automate processes using a variety of tools and techniques. You have possibility to sell, give and evaluate sollutions. Plus our machine learning model need you help and proffesional consultations. Give it as much functionality and possibilities as possible"}
+
+### post: /classify
+    {"text": "Python JavaScript Developer. With possibility to conduct smooth sales"}
+
