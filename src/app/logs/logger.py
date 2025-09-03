@@ -1,7 +1,8 @@
 import logging
 from datetime import datetime
+from src.app.config import Config
 
-def get_custom_logger(config, name: str, log_file: str = None) -> logging.Logger:
+def get_custom_logger(name: str, log_file: str=None) -> logging.Logger:
     """
     Returns a configured logger that writes to both a file and the console.
 
@@ -16,6 +17,7 @@ def get_custom_logger(config, name: str, log_file: str = None) -> logging.Logger
         logger = get_logger("train_model")
         logger.info("Training started")
     """
+    config = Config()
     LOG_DIR = config.get('logs_dir')
     # returns ready to use logger with name from parameters
     logger = logging.getLogger(name)

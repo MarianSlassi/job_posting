@@ -17,7 +17,3 @@ class SkillExtractionItem(BaseModel):
 
 class SkillExtractionResponse(BaseModel):
     skills: List[SkillExtractionItem]
-
-# -----------------------------------------------------------------------------
-# Domain schemas (Pydantic models for request/response validation)
-# -----------------------------------------------------------------------------

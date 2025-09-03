@@ -4,7 +4,18 @@ from src.app.api.schemas import SkillExtractionResponse
 extract_skills_responses = {
     status.HTTP_200_OK: {
         "description": "Successful skill extraction",
-        "model": SkillExtractionResponse
+        "model": SkillExtractionResponse,
+        "content": {
+            "application/json": {
+                "example": {
+                    "skills": [
+                        {"text": "Python"},
+                        {"text": "FastAPI"},
+                        {"text": "Machine Learning"}
+                    ]
+                }
+            }
+        }
     },
     status.HTTP_400_BAD_REQUEST: {
         "description": "Bad request (e.g., missing 'text' field)"
