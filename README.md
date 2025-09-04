@@ -69,7 +69,7 @@ For the baseline, we used **features-CRF** from `scikit_crf`. Parameters:
         uvicorn.run("src.app.main:app", host="127.0.0.1", port=8000, reload=True)
 
     if just no code you can run with 
-    uv run uvicorn src.main:app --reload
+    uv run uvicorn src.app.main:app --reload
 
 ###  How to use Description classification model: 
     from src.core.classifiers import ClassifierModel 
