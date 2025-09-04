@@ -8,7 +8,6 @@ classify_responses = {
         "content": {
             "application/json": {
                 "example": {
-                    "job_title": "Software Engineer",
                     "classification": "IT",
                     "confidence": 0.97
                 }

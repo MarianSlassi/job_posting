@@ -64,15 +64,15 @@ For the baseline, we used **features-CRF** from `scikit_crf`. Parameters:
 
 ### Uvicorn
 
-    console if \__main__ initialised : uv run python -m src.app.main_test
+    console if \__main__ initialised : uv run python -m src.app.main
     if __name__ == '__main__':
-        uvicorn.run("src.app.main_test:app", host="127.0.0.1", port=8000, reload=True)
+        uvicorn.run("src.app.main:app", host="127.0.0.1", port=8000, reload=True)
 
     if just no code you can run with 
-    uv run uvicorn src.main_test:app --reload
+    uv run uvicorn src.main:app --reload
 
 ###  How to use Description classification model: 
-    from src.model import ClassifierModel 
+    from src.core.classifiers import ClassifierModel 
     finetuned_dir = "../models/checkpoint-33000"
 
     clf = ClassifierModel(finetuned_dir, finetuned=True, max_length=256)
@@ -110,6 +110,7 @@ For the baseline, we used **features-CRF** from `scikit_crf`. Parameters:
 
 
 ## API testing
+
 ### post: /extract_skills
     {"text": "You will work as part of our Agile hybrid DevOps teams to help develop/configure new tools roll out environments and automate processes using a variety of tools and techniques. You have possibility to sell, give and evaluate sollutions. Plus our machine learning model need you help and proffesional consultations. Give it as much functionality and possibilities as possible"}
 

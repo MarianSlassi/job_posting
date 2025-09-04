@@ -11,6 +11,7 @@ classify_router = APIRouter()
 @classify_router.post("/classify", response_model=ClassifyTextResponse, responses = classify_responses)  
 async def classify(req: RequestText, classifier = Depends(get_classifier), request: Request = None) -> Any:
     logger = get_custom_logger(log_file= 'classifier_endpoint', name= 'classifier_endpoint')
+    logger.info(f"Received classify request: {req}")
     try:
         raw_result = classifier.predict(text=req.text)
         logger.info(f"Processed classify request: {raw_result}")

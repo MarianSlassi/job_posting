@@ -6,10 +6,10 @@ from src.app.api.responses.extract_skills import extract_skills_responses
 from src.app.logs import get_custom_logger
 
 extract_skills_router = APIRouter()
+logger = get_custom_logger(log_file= 'extractor_endpoint', name= 'extractor_endpoint')
 
-@extract_skills_router.post("/extract_skills", response_model= SkillExtractionResponse, responses = extract_skills_responses) # 
+@extract_skills_router.post("/extract_skills", response_model= SkillExtractionResponse, responses = extract_skills_responses) 
 async def extract_skills(req: RequestText, extractor = Depends(get_extractor)) -> Any:
-    logger = get_custom_logger(log_file= 'extractor_endpoint', name= 'extractor_endpoint')
     logger.info(f"Received extract_skills request: {req}")
     try:
         raw_result = extractor.predict(text = req.text)
