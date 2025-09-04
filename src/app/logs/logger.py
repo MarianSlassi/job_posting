@@ -2,12 +2,11 @@ import logging
 from datetime import datetime
 from src.app.config import Config
 
-def get_custom_logger(name: str, log_file: str=None) -> logging.Logger:
+def get_custom_logger(log_file:str = None) -> logging.Logger:
     """
     Returns a configured logger that writes to both a file and the console.
 
     Args:
-        name (str): Name of the logger.
         log_file (str, optional): Name of the log file. If not provided, the file name will include the current date and time.
 
     Returns:
@@ -20,7 +19,7 @@ def get_custom_logger(name: str, log_file: str=None) -> logging.Logger:
     config = Config()
     LOG_DIR = config.get('logs_dir')
     # returns ready to use logger with name from parameters
-    logger = logging.getLogger(name)
+    logger = logging.getLogger(log_file) #  name = log_file
     logger.setLevel(logging.INFO)
 
     if not logger.handlers:

@@ -20,7 +20,7 @@ from src.app.api.routers.extract_skill import extract_skills_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     config = Config()
-    logger = get_custom_logger(log_file= 'lifespan', name= 'lifespan')
+    logger = get_custom_logger(log_file= 'lifespan')
 
     logger.info("Loading models...")
     app.state.classifier = ClassifierService(bert_model = ClassifierModel(model_path=str(config.get('classification_model'))))

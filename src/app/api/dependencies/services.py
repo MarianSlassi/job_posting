@@ -1,6 +1,5 @@
 from src.app.core.classifiers.classification_model import ClassifierModel
 from src.app.core.ner.skills_model import SkillExtractor
-from src.app.logs import get_custom_logger
 
 class ClassifierService():
 

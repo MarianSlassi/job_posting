@@ -6,7 +6,7 @@ from src.app.api.responses.classify import classify_responses
 from src.app.logs import get_custom_logger
 
 classify_router = APIRouter()
-logger = get_custom_logger(log_file= 'classifier_endpoint', name= 'classifier_endpoint')
+logger = get_custom_logger(log_file= 'classifier_endpoint')
 
 @classify_router.post("/classify", response_model=ClassifyTextResponse, responses = classify_responses)  
 async def classify(req: RequestText, classifier = Depends(get_classifier), request: Request = None) -> Any:
