@@ -23,10 +23,10 @@ async def lifespan(app: FastAPI):
     logger = get_custom_logger(log_file= 'lifespan')
 
     logger.info("Loading models...")
-    app.state.classifier = ClassifierService(bert_model = ClassifierModel(model_path=str(config.get('classification_model'))))
+    app.state.classifier = ClassifierService(classifier_model = ClassifierModel(model_path=str(config.get('classification_model'))))
     logger.info("Classifier model has been load...")
     logger.info("Services initialized...")
-    app.state.extractor = SkillExtractorService(ner_model = SkillExtractor.load(load_dir=config.get('ner_model')))
+    app.state.extractor = SkillExtractorService(extractor = SkillExtractor.load(load_dir=config.get('ner_model')))
     logger.info("SkillExtractor model has been load...")
 
     yield  

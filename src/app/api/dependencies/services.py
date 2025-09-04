@@ -14,10 +14,10 @@ class ClassifierService():
 
 class SkillExtractorService:
 
-    def __init__(self, ner_model: SkillExtractor) -> None:
-        self.ner_model = ner_model
+    def __init__(self, extractor: SkillExtractor) -> None:
+        self.extractor = extractor
 
     def predict(self, text: str):
-        if not self.ner_model:
+        if not self.extractor:
             raise RuntimeError("Extractor model class is not loaded.")
-        return self.ner_model.predict(text)
+        return self.extractor.predict(text)
