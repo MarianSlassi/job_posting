@@ -166,7 +166,7 @@ class SkillExtractor:
 
         args = TrainingArguments(
             output_dir=str(output_dir),
-            evaluation_strategy="steps",
+            eval_strategy="steps",
             eval_steps=500,
             save_steps=500,
             save_total_limit=2,
@@ -231,8 +231,8 @@ class SkillExtractor:
         inst.label_list = mapping["label_list"]
         inst.label2id = {k: int(v) for k, v in mapping["label2id"].items()}
         inst.id2label = {int(v): k for k, v in inst.label2id.items()}
-        inst.tokenizer = AutoTokenizer.from_pretrained(str(load_dir), use_fast=True)
-        inst.model = AutoModelForTokenClassification.from_pretrained(str(load_dir)).to(inst.device)
+        inst.tokenizer = AutoTokenizer.from_pretrained(str(load_dir), use_fast=True, local_files_only=True)
+        inst.model = AutoModelForTokenClassification.from_pretrained(str(load_dir), local_files_only=True).to(inst.device)
         return inst
 
     # ------------------------------

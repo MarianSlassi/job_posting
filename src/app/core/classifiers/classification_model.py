@@ -58,8 +58,8 @@ class ClassifierModel:
         use_finetuned = finetuned if finetuned is not None else not is_new_head
 
         if use_finetuned:
-            self.tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True)
-            self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True,local_files_only=True)
+            self.model = AutoModelForSequenceClassification.from_pretrained(model_path, local_files_only=True)
         else:
             cfg = AutoConfig.from_pretrained(
                 model_path,

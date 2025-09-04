@@ -2,10 +2,10 @@ from pathlib import Path
 
 class Config:
 
-    def __init__(self, base_dir: Path = None, **custom_paths):
-        self.base_dir = base_dir or Path(__file__).resolve().parents[1] / 'data' # store all data in dedicated folder ⚠️
-        self.models_dir = base_dir or Path(__file__).resolve().parents[1] / 'models'
-
+    def __init__(self, base_dir: Path = None, models_dir: Path=None, **custom_paths):
+        self.base_dir = base_dir or Path(__file__).resolve().parents[3] / 'data' # store all data in dedicated folder ⚠️
+        self.models_dir = models_dir or Path(__file__).resolve().parents[3] / 'models'
+        print(f'Config initialized with \n base_dir: {self.base_dir} \n models_dir:{self.models_dir} ')
         '''
         Rules of devine config:
         1. Don't change variables names, only path.
@@ -54,11 +54,16 @@ class Config:
         Now no need to redefine kaggle_download variable when initing config bc it's stored at raw dir. 
         '''
         self._config = {
+            # Logs
+            'logs_dir': logs_dir, 
+            
 
             # Models
-            'models_dir':                  models_dir,
+            'models_dir':                 models_dir,
             'label2id':                   models_dir / 'label2id.json',
             'id2label':                   models_dir / 'id2label.json',
+            'classification_model':       models_dir / 'classification',
+            'ner_model':                  models_dir / 'ner',
 
             # Validated_3
             'validated_dir':                validated_dir,
@@ -73,6 +78,7 @@ class Config:
 
             # Raw _01
             'raw_dir':                          raw_dir,
+
             
 
 
