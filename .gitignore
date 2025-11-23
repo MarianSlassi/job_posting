@@ -7,7 +7,7 @@ wheels/
 *.egg-info
 
 # Local variables
-.uvenv
+.venv
 .vscode/
 
 # File types
@@ -24,3 +24,6 @@ wheels/
 /data
 /models
 /mlruns
+
+# Locked
+*.env
